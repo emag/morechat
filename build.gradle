@@ -1,0 +1,36 @@
+subprojects {
+  apply plugin: 'java'
+
+  version = "0.0.1-SNAPSHOT"
+
+  jar.manifest {
+    attributes(
+      'Implementation-Title' : name,
+      'Implementation-Version': version,
+      'Built-JDK': "${System.getProperty("java.version")} (${System.getProperty("java.specification.vendor")})",
+      'Built-Gradle': gradle.gradleVersion
+    )
+  }
+
+  compileJava.options.encoding = 'UTF-8'
+
+  sourceCompatibility = targetCompatibility = 1.8
+
+  repositories {
+    mavenCentral()
+    jcenter()
+  }
+
+  dependencies {
+    testCompile 'junit:junit:4.11'
+  }
+
+}
+
+project(':morechat-server') {
+  dependencies {
+    compile 'ninja.siden:siden-core:0.2.0'
+  }
+}
+
+project("morechat-client") {}

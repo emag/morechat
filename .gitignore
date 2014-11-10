@@ -1,0 +1,51 @@
+# For Project
+
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*.sass-cache
+
+# OS or Editor folders
+*.iml
+.idea
+.DS_Store
+.cache
+.project
+.settings
+.classpath
+.tmproj
+nbproject
+Thumbs.db
+
+# Maven output folder
+target
+
+# Gradle
+.gradle
+build
+gradle-app.setting
+out
+
+# sbt
+project/project
+project/target
+
+# Play!
+logs
+
+# JS
+node_modules
+bower_components
+
+# JRebel
+rebel.xml
+
+# Vagrant
+.vagrant
