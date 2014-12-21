@@ -25,8 +25,12 @@ public class ChatClientUtil {
     JsonObject root = Json.createReader(new StringReader(response)).readObject();
     String name = root.getString("name");
     String msg = root.getString("msg");
-    String voice = root.getString("voice");
-    return String.format("%s: %s(%s)", name, msg, voice);
+    return String.format("%s: %s", name, msg);
+  }
+
+  public static String responseUserName(final String response) {
+    JsonObject root = Json.createReader(new StringReader(response)).readObject();
+    return root.getString("name");
   }
 
   public static String responseMessage(final String response) {

@@ -9,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -46,6 +47,9 @@ public class ChatClientController implements Initializable {
 
   @FXML
   private TextField message;
+
+  @FXML
+  private CheckBox muteMyVoice;
 
   @FXML
   private Button say;
@@ -91,7 +95,11 @@ public class ChatClientController implements Initializable {
         chatClientEndpoint.addMessageHandler(response -> {
           Platform.runLater(() -> {
             chat.history.add(ChatClientUtil.response2String(response));
-            ChatClientUtil.responseVoice(response).ready().speak(ChatClientUtil.responseMessage(response));
+            if (muteMyVoice.isSelected() && ChatClientUtil.responseUserName(response).equals(userName.getText())) {
+              // through
+            } else {
+              ChatClientUtil.responseVoice(response).ready().speak(ChatClientUtil.responseMessage(response));
+            }
           });
         });
         chat.connected.set(true);
